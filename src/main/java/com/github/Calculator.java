@@ -9,6 +9,6 @@ public final class Calculator {
         if (b == 0) {
             throw new IllegalArgumentException("Divisor b must not be zero");
         }
-        return a % b;
+        return Math.floorMod(a, b);
     }
 }
