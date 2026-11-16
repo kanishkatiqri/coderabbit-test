@@ -4,3 +4,17 @@ knowledge_base:
     enabled: true
     filePatterns:
       - "kanishkatiqri/coderabbit-knowledge:skills/**/SKILL.md"
+reviews:
+  pre_merge_checks:
+    issue_assessment:
+      mode: "error"
+    custom_checks:
+      - name: "Acceptance Criteria Coverage"
+        mode: "error"
+        instructions: |
+          Pass/fail criteria: If the PR links an issue (e.g. "Closes #N", "Fixes #N"), read every numbered acceptance criterion in that issue and verify each one against the full PR diff.
+          - Fail if any criterion is not implemented, including criteria that require NEW FILES to exist (for example a specific test class such as src/test/java/.../FooTest.java, documentation, or migrations). A required file that is absent from the diff is a failure, not a pass.
+          - Fail if the implementation uses different class, method, or file names than the issue specifies.
+          - Fail if any required test case listed in the issue is missing from the added tests.
+          In the result, list every acceptance criterion with its number and mark it MET or NOT MET, with a one-line reason.
+          Pass if all criteria are met, or if the PR links no issue.
